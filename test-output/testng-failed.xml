@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="5" name="Failed suite [Suite]">
+  <test thread-count="5" verbose="5" name="registrationTests(failed)">
+    <parameter name="url" value="http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000"/>
+    <classes>
+      <class name="org.iit.mmp.tests.registrationTests">
+        <methods>
+          <include name="instantiateDriver"/>
+          <include name="validateAdminLoginAlertMessageAfterApproval" invocation-numbers="0"/>
+          <include name="validatePatientLoginAlertMessageAfterApproval"/>
+        </methods>
+      </class> <!-- org.iit.mmp.tests.registrationTests -->
+    </classes>
+  </test> <!-- registrationTests(failed) -->
+</suite> <!-- Failed suite [Suite] -->
