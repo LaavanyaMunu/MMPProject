@@ -32,8 +32,6 @@ public class helperClass {
 		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(uName);
 		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(pWord);
 		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
-		driver.findElement(By.xpath("//span[contains(text(),'Users')]")).click();
-		Thread.sleep(2000);
 	}
 	public void navigateToAModule(String moduleName) {
 		driver.findElement(By.xpath("//span[contains(text(),'" + moduleName + "')]")).click();

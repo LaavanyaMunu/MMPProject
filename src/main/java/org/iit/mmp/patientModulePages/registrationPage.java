@@ -8,7 +8,6 @@ import java.util.Random;
 
 import org.iit.mmp.helper.helperClass;
 import org.iit.mmp.util.appLibrary;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +18,7 @@ public class registrationPage {
 	WebDriver driver;
 	helperClass helperObj ;
 	int noOfChars = 4;
-	//ssn should contain 9 digits
+	
 	By FirstName = By.xpath("//input[@id='firstname']");
 	By LastName = By.id("lastname");
 	By DOB = By.id("datepicker");
@@ -203,6 +202,8 @@ public class registrationPage {
 	}
    public String adminApprovalAlertMessage(String url,String uName, String pWord) throws Exception {
 	    helperObj.launchAdminLoginPage(url,uName,pWord);
+	    driver.findElement(By.xpath("//span[contains(text(),'Users')]")).click();
+		Thread.sleep(2000);
 	    //number of rows in the dynamic table 
 	    List<WebElement> rows = driver.findElements(By.xpath("//*[@id='show']/table/tbody/tr/td[1]"));
 	    int i=rows.size();
