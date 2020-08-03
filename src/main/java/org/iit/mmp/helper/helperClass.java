@@ -28,11 +28,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 		{
 			driver.get(url);
 		}
-		public void launchAdminLoginPage(String url) throws InterruptedException {
+		public void launchAdminLoginPage(String url,String uName, String pWord) throws InterruptedException {
 			driver.get(url);
 			driver.findElement(By.xpath("//div[@id='welcome']//following-sibling::a[contains(text(),'Login') ]")).click();
-			driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys("Thomas_444");
-			driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys("Edison_444");
+			driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(uName);
+			driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(pWord);
 			driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
 			driver.findElement(By.xpath("//span[contains(text(),'Users')]")).click();
 			Thread.sleep(2000);

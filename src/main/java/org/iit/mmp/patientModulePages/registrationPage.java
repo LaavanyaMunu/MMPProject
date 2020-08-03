@@ -1,13 +1,14 @@
  package org.iit.mmp.patientModulePages;
 
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import org.iit.mmp.helper.helperClass;
 import org.iit.mmp.util.appLibrary;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -16,7 +17,9 @@ public class registrationPage {
 	 
 	WebDriver driver;
 	helperClass helperObj ;
-	 	
+	int noOfChars = 4;
+	//adding and removing comment from command line
+	//license should contains 8 nos	
 	By FirstName = By.xpath("//input[@id='firstname']");
 	By LastName = By.id("lastname");
 	By DOB = By.id("datepicker");
@@ -49,12 +52,12 @@ public class registrationPage {
 	}
 	
 	public void enterFirstName() {
-		String fnameValue = "ATFirstName"+appLibrary.getRandomChars(4);
+		String fnameValue = "ATFirstName"+appLibrary.getRandomChars(noOfChars);
 		driver.findElement(FirstName).sendKeys(fnameValue);
 		registrationMap.put("firstName", fnameValue);
 	}
 	public void enterLastName() {
-		String lnameValue = "ATLastName"+appLibrary.getRandomChars(4);
+		String lnameValue = "ATLastName"+appLibrary.getRandomChars(noOfChars);
 		driver.findElement(LastName).sendKeys(lnameValue);
 		registrationMap.put("lastName", lnameValue);
 	}
@@ -65,36 +68,39 @@ public class registrationPage {
 		
 	}
 	public void enterLicense() {
-		String licenseValue =appLibrary.getRandomDigits(7);
+		//String licenseValue =appLibrary.getRandomDigits(7);
 		//int validLicense = Integer.parseInt(licenseValue);
-		driver.findElement(license).sendKeys(licenseValue);
-		registrationMap.put("license", licenseValue);
-		System.out.println(" lince value is "+ licenseValue);
+		int n = 10000000 + new Random().nextInt(30000000);
+		driver.findElement(license).sendKeys(Integer.toString(n));
+		registrationMap.put("license", Integer.toString(n));
+		
 	}
 	public void enterSSN() {
-		String ssnValue = appLibrary.getRandomDigits(8);
-		driver.findElement(ssn).sendKeys(ssnValue);
-		registrationMap.put("ssn", ssnValue);
+		//String ssnValue = appLibrary.getRandomDigits(9);
+		int n = 100000000 + new Random().nextInt(899999999);
+		driver.findElement(ssn).sendKeys(Integer.toString(n));
+		registrationMap.put("ssn", Integer.toString(n));
 	}
 	public void enterState() {
-		String stateValue =appLibrary.getRandomChars(2);
+		String stateValue =appLibrary.getRandomChars(noOfChars);
 		driver.findElement(state).sendKeys(stateValue);
 		registrationMap.put("state", stateValue);
 	}
 	public void enterCity() {
-		String cityValue = "ATCity"+appLibrary.getRandomChars(10);
+		String cityValue = "ATCity"+appLibrary.getRandomChars(noOfChars);
 		driver.findElement(city).sendKeys(cityValue);
 		registrationMap.put("city", cityValue);
 	}
 	public void enterAddress() {
-		String addressValue = "ATAddress"+appLibrary.getRandomChars(15);
+		String addressValue = "ATAddress"+appLibrary.getRandomChars(noOfChars);
 		driver.findElement(address).sendKeys(addressValue);
 		registrationMap.put("address", addressValue);
 	}
 	public void enterZip() {
-		String zipValue = appLibrary.getRandomDigits(4);
-		driver.findElement(zip).sendKeys(zipValue);
-		registrationMap.put("zip", zipValue);
+		//String zipValue = appLibrary.getRandomDigits(4);
+		int n = 10000+ new Random().nextInt(89999);
+		driver.findElement(zip).sendKeys(Integer.toString(n));
+		registrationMap.put("zip", Integer.toString(n));
 	}
 	public void enterage() {
 		String ageValue =appLibrary.getRandomDigits(1);
@@ -139,23 +145,13 @@ public class registrationPage {
 		registrationMap.put("uname", uNameValue);
 	}
 
-	/*
-	 * public void enterConfirmPwd() { String confirmPwdValue =
-	 * driver.findElement(pwd).getText();
-	 * driver.findElement(confirmpwd).sendKeys(confirmPwdValue);
-	 * registrationMap.put("confirmpwd", confirmPwdValue); }
-	 */
 	public void enterSecurityQues() {
 		Select sel = new Select(driver.findElement(security));
-		/*
-		 * Random r = new Random(); sel.selectByIndex(r.nextInt(3));
-		 */
-		System.out.println("SECU QUES IS " + 1);
 		sel.selectByIndex(appLibrary.getRandomIndexInRange(3,1));
 		registrationMap.put("securityQues", "what is your age");
 	}
 	public void enterSecurityAns() {
-		String answerValue = "ATAns"+ appLibrary.getRandomChars(4);
+		String answerValue = "ATAns"+ appLibrary.getRandomChars(noOfChars);
 		driver.findElement(ans).sendKeys(answerValue);
 		registrationMap.put("secuAns", answerValue);
 	}
@@ -163,85 +159,79 @@ public class registrationPage {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//input[@value = 'Save']")).click();
 	}
-	
+	public HashMap<String, String> fillregisterPatientForm() throws InterruptedException {
+		enterFirstName();
+		enterLastName();
+		enterDOB();
+		enterLicense();
+		enterSSN();
+		enterState();
+		enterCity();
+		enterAddress();
+		enterZip();
+		enterage();
+		enterHeight();
+		enterWeight();
+		enterPharmacy();
+		enterPharAddress();
+		enterEmail();
+		enterPassword();
+		enterUserName();
+		//enterConfirmPwd();
+		Thread.sleep(2000);
+		enterSecurityQues();
+		enterSecurityAns();
+		clickOnSave();
+		return registrationMap;
+	}
+	public String alertMessage() {
+		Alert alt = driver.switchTo().alert(); 
+		  String AlertMessage = alt.getText(); 
+		  alt.accept(); 
+		  return AlertMessage;
+		
+	}
 	public String registrationCompleteAlertMessage() throws InterruptedException {
 		Thread.sleep(5000);
-		 Alert regAlert = driver.switchTo().alert(); 
-		  String AlertMessage = regAlert.getText(); 
-		  regAlert.accept(); 
-		  return AlertMessage; 
+		  String regCompleteAlert= alertMessage();
+		  return regCompleteAlert;
 	}
 	
 
-	public String patientLoginAlertMessageBeforeApproval() throws InterruptedException {
-		//driver.findElement(By.xpath("//a[text()='Patient Login']")).click();
-		//driver.findElement(By.xpath("//a[@href='portal/login.php']")).click();
-		driver.get("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
+	public String patientLoginAlertMessageBeforeApproval(String patientLoginUrl) throws InterruptedException {
+		driver.get(patientLoginUrl);
+		//helperObj.patientLogin(uName, pWord);
 		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(registrationMap.get("uname"));
 		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(registrationMap.get("pwd"));
 		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
 		Thread.sleep(5000);
-		Alert pa = driver.switchTo().alert();
-		String loginalertMessage = pa.getText();
-		pa.accept();
+		String loginalertMessage = alertMessage(); 
 		return loginalertMessage;
 	}
-   public String adminApprovalAlertMessage(String url) throws Exception {
-	    helperObj.launchAdminLoginPage(url);
-	    
-	    JavascriptExecutor js = (JavascriptExecutor) driver;
-	    //js.executeScript("window.scrollBy(0,5000)");
-	    js.executeScript("arguments[0].scrollIntoView();",driver.findElement(By.name("approval")) );
-	    String patientToApprove = driver.findElement(uname).getText() ;
-	    System.out.println(patientToApprove);
-	    driver.findElement(By.xpath("//a[contains(text(),'patientToApprove']")).click();
+   public String adminApprovalAlertMessage(String url,String uName, String pWord) throws Exception {
+	    helperObj.launchAdminLoginPage(url,uName,pWord);
+	    //number of rows in the dynamic table 
+	    List<WebElement> rows = driver.findElements(By.xpath("//*[@id='show']/table/tbody/tr/td[1]"));
+	    int i=rows.size();
+	    driver.findElement(By.xpath("//*[@id='show']/table/tbody/tr["+i+"]/td[1]/a")).click();
 	   	Select status = new Select(driver.findElement(By.name("approval")));
-	    Thread.sleep(2000);
-		status.selectByVisibleText("Accepted");
+	    status.selectByVisibleText("Accepted");
 		driver.findElement(By.xpath("//input[@value='Submit']")).click();
 		Thread.sleep(5000);
-	    Alert statusPopup = driver.switchTo().alert();
-		String patientStatusMsgAfterAdminAppr = statusPopup.getText();
-		statusPopup.accept();
+	    String patientStatusMsgAfterAdminAppr = alertMessage();
 		return patientStatusMsgAfterAdminAppr;
    }
-   public String patientLoginAlertMessageAfterApproval() throws InterruptedException {
-		//driver.findElement(By.xpath("//a[@href='portal/login.php']")).click();
-	    driver.get("http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php");
+   public String validatePatientLoginAfterApproval(String patientLoginUrl) throws InterruptedException {
+		driver.get(patientLoginUrl);
 		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(registrationMap.get("uname"));
 		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(registrationMap.get("pwd"));
 		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
 		Thread.sleep(5000);
-		Alert pa = driver.switchTo().alert();
-		pa.accept();
-		return pa.getText();
+		String title= driver.findElement(By.xpath("//div[@class='panel-heading']/h3[@class='panel-title']")).getText();
+		return title;
 	}
 
-public HashMap<String, String> fillregisterPatientForm() throws InterruptedException {
-	enterFirstName();
-	enterLastName();
-	enterDOB();
-	enterLicense();
-	enterSSN();
-	enterState();
-	enterCity();
-	enterAddress();
-	enterZip();
-	enterage();
-	enterHeight();
-	enterWeight();
-	enterPharmacy();
-	enterPharAddress();
-	enterEmail();
-	enterPassword();
-	enterUserName();
-	//enterConfirmPwd();
-	Thread.sleep(2000);
-	enterSecurityQues();
-	enterSecurityAns();
-	clickOnSave();
-	return registrationMap;
-}
+
 
 
 }

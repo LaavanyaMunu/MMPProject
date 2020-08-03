@@ -1,18 +1,15 @@
 package org.iit.mmp.tests;
 
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.Assert;
-
+import org.testng.annotations.Parameters;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.iit.mmp.helper.helperClass;
 import org.iit.mmp.patientModulePages.registrationPage;
 import org.iit.mmp.util.testBase;
 
 public class registrationTests extends testBase{
-	//WebDriver driver;
 	helperClass hObj ;
 	registrationPage rp;
 	@Parameters("url")
@@ -29,36 +26,34 @@ public class registrationTests extends testBase{
 	  
 	            System.out.println(key + " : " + value); 
 		 }
-		String actual = "Thank you for registering with MMP.";
-		String expected = rp.registrationCompleteAlertMessage();
-		Assert.assertEquals(expected.trim(), actual);
+		String expected = "Thank you for registering with MMP.";
+		String actual = rp.registrationCompleteAlertMessage();
+		Assert.assertEquals(actual.trim(),expected, actual);
+		System.out.println("The registration successful message is "+ actual);	
+		
 		}
+	@Parameters("patientLoginUrl")
 	@Test(priority =2) 
-	  public void validatePatientLoginAlertMessageBeforeApproval() throws InterruptedException {
-	  //rp.patientLoginAlertMessageBeforeApproval(); 
-	  String actual ="Admin Approval is pending.";
-	  String expected =rp.patientLoginAlertMessageBeforeApproval(); 
-	  Assert.assertEquals(expected.trim(),actual);
-	  System.out.println("The alert message when patient logs in before admin approves is  "+ expected );
+	  public void validatePatientLoginAlertMessageBeforeApproval(String patientLoginUrl) throws InterruptedException {
+	  String expected ="Admin Approval is pending.";
+	  String actual =rp.patientLoginAlertMessageBeforeApproval(patientLoginUrl); 
+	  Assert.assertEquals(actual.trim(),expected, actual);
+	  System.out.println("The alert message when patient logs in before admin approves is  "+ actual );
 	  }
-	@Parameters("url")
-	@Test(priority =3) 
-	  public void validateAdminLoginAlertMessageAfterApproval(String url) throws Exception {
-	  //rp.adminApprovalAlertMessage(url); 
-	  String actual ="Patient is updated.";
-	  String expected =rp.adminApprovalAlertMessage(url); 
-	  Assert.assertEquals(expected.trim(),actual);
-	  System.out.println("The alert message when admin logs in to approves is  "+ expected );
+	  @Parameters({"url", "uName","pWord"})
+	  @Test(priority =3) 
+	  public void validateAdminLoginAlertMessageAfterApproval(String url,String uName, String pWord) throws Exception {
+	  String expected ="USER has been updated.";
+	  String actual =rp.adminApprovalAlertMessage(url,uName,pWord);
+	  Assert.assertEquals(actual.trim(),expected,actual);
+	  System.out.println("The alert message when admin logs in to approves is  "+ actual ); 
 	  }
+	@Parameters("patientLoginUrl")
 	@Test(priority =4) 
-	  public void validatePatientLoginAlertMessageAfterApproval() throws InterruptedException {
-	  //rp.patientLoginAlertMessageAfterApproval(); 
-	  String actual ="Admin Approval is pending.";
-	  String expected =rp.patientLoginAlertMessageAfterApproval(); 
-	  Assert.assertEquals(expected.trim(),actual);
-	  System.out.println("The alert message when patient logs in after admin's approval is  "+ expected );
-	  }
-	  
-	 
-
-	}
+	  public void validatePatientLoginAlertMessageAfterApproval(String patientLoginUrl) throws InterruptedException {
+	  String actual = "Patient Portal";
+	  String expected = rp.validatePatientLoginAfterApproval(patientLoginUrl);
+	  Assert.assertEquals(actual, expected);
+	  System.out.println("The panel title when patient logs in after admin's approval is  "+ expected );
+	  }	  
+}

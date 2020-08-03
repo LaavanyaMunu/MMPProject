@@ -18,20 +18,6 @@ public class appLibrary {
 		return date.toString();
 		
 	}
-	public static String[][] readXls(String filePath)
-	{
-		String[][] str = new String[10][10];
-		
-		return  str;
-	}
-	public static String[][] readXlsx(String filePath)
-	{
-		String[][] str = new String[10][10];
-		
-		return  str;
-	}
-	
-	//get random chars - count 5
 	public static String getRandomChars(int count)
 	{
 		Random rnd = new Random();
