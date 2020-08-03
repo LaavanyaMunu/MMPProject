@@ -6,6 +6,7 @@
 	<parameter name ="patientLoginUrl" value = "http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php" />
 	<parameter name = "uName" value = "Thomas_444" />
 	<parameter name = "pWord" value = "Edison_444" />
+	<parameter name = "tc_Name" value = "tc_003" />
 		<classes>
 		<class name="org.iit.mmp.tests.registrationTests"/>
 		</classes>

@@ -1,6 +1,7 @@
  package org.iit.mmp.patientModulePages;
 
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +19,7 @@ public class registrationPage {
 	WebDriver driver;
 	helperClass helperObj ;
 	int noOfChars = 4;
-	
+	//ssn should contain 9 digits
 	By FirstName = By.xpath("//input[@id='firstname']");
 	By LastName = By.id("lastname");
 	By DOB = By.id("datepicker");
@@ -67,7 +68,7 @@ public class registrationPage {
 		
 	}
 	public void enterLicense() {
-		//String licenseValue =appLibrary.getRandomDigits(7);
+		//String licenseValue =appLibrary.getRandomDigits(8);
 		//int validLicense = Integer.parseInt(licenseValue);
 		int n = 10000000 + new Random().nextInt(30000000);
 		driver.findElement(license).sendKeys(Integer.toString(n));
@@ -96,23 +97,23 @@ public class registrationPage {
 		registrationMap.put("address", addressValue);
 	}
 	public void enterZip() {
-		//String zipValue = appLibrary.getRandomDigits(4);
+		//String zipValue = appLibrary.getRandomDigits(5);
 		int n = 10000+ new Random().nextInt(89999);
 		driver.findElement(zip).sendKeys(Integer.toString(n));
 		registrationMap.put("zip", Integer.toString(n));
 	}
 	public void enterage() {
-		String ageValue =appLibrary.getRandomDigits(1);
+		String ageValue =appLibrary.getRandomDigits(2);
 		driver.findElement(age).sendKeys(ageValue);
 		registrationMap.put("age", ageValue);
 	}
 	public void enterHeight() {
-		String heightValue = appLibrary.getRandomDigits(1);
+		String heightValue = appLibrary.getRandomDigits(2);
 		driver.findElement(height).sendKeys(heightValue);
 		registrationMap.put("height", heightValue);
 	}
 	public void enterWeight() {
-		String weightValue = appLibrary.getRandomDigits(1);
+		String weightValue = appLibrary.getRandomDigits(2);
 		driver.findElement(weight).sendKeys(weightValue);
 		registrationMap.put("weight", weightValue);
 	}
@@ -127,7 +128,7 @@ public class registrationPage {
 		registrationMap.put("pharAddress", pharAddressValue);
 	}
 	public void enterEmail() {
-		String emailValue = "ATEmail"+appLibrary.getRandomChars(10) + "@gmail.com";
+		String emailValue = "ATEmail"+appLibrary.getRandomChars(noOfChars) + "@gmail.com";
 		driver.findElement(email).sendKeys(emailValue);
 		registrationMap.put("email", emailValue);
 	}
@@ -139,7 +140,7 @@ public class registrationPage {
 		registrationMap.put("confirmpwd", pwdValue);
 	}
 	public void enterUserName() {
-		String uNameValue = "ATUname"+appLibrary.getRandomChars(4);
+		String uNameValue = "ATUname"+appLibrary.getRandomChars(noOfChars);
 		driver.findElement(uname).sendKeys(uNameValue);
 		registrationMap.put("uname", uNameValue);
 	}
@@ -147,7 +148,8 @@ public class registrationPage {
 	public void enterSecurityQues() {
 		Select sel = new Select(driver.findElement(security));
 		sel.selectByIndex(appLibrary.getRandomIndexInRange(3,1));
-		registrationMap.put("securityQues", "what is your age");
+		registrationMap.put("securityQues", sel.getFirstSelectedOption().getText());
+		//registrationMap.put("securityQues", "what is your age");
 	}
 	public void enterSecurityAns() {
 		String answerValue = "ATAns"+ appLibrary.getRandomChars(noOfChars);
@@ -183,20 +185,12 @@ public class registrationPage {
 		clickOnSave();
 		return registrationMap;
 	}
-	public String alertMessage() {
-		Alert alt = driver.switchTo().alert(); 
-		  String AlertMessage = alt.getText(); 
-		  alt.accept(); 
-		  return AlertMessage;
-		
-	}
+	
 	public String registrationCompleteAlertMessage() throws InterruptedException {
 		Thread.sleep(5000);
-		  String regCompleteAlert= alertMessage();
+		  String regCompleteAlert= helperObj.alertMessage();
 		  return regCompleteAlert;
 	}
-	
-
 	public String patientLoginAlertMessageBeforeApproval(String patientLoginUrl) throws InterruptedException {
 		driver.get(patientLoginUrl);
 		//helperObj.patientLogin(uName, pWord);
@@ -204,7 +198,7 @@ public class registrationPage {
 		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(registrationMap.get("pwd"));
 		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
 		Thread.sleep(5000);
-		String loginalertMessage = alertMessage(); 
+		String loginalertMessage = helperObj.alertMessage();
 		return loginalertMessage;
 	}
    public String adminApprovalAlertMessage(String url,String uName, String pWord) throws Exception {
@@ -214,23 +208,20 @@ public class registrationPage {
 	    int i=rows.size();
 	    driver.findElement(By.xpath("//*[@id='show']/table/tbody/tr["+i+"]/td[1]/a")).click();
 	   	Select status = new Select(driver.findElement(By.name("approval")));
+	   	Thread.sleep(2000);
 	    status.selectByVisibleText("Accepted");
 		driver.findElement(By.xpath("//input[@value='Submit']")).click();
-		Thread.sleep(5000);
-	    String patientStatusMsgAfterAdminAppr = alertMessage();
+		String patientStatusMsgAfterAdminAppr = helperObj.alertMessage();
 		return patientStatusMsgAfterAdminAppr;
    }
-   public String validatePatientLoginAfterApproval(String patientLoginUrl) throws InterruptedException {
+   public String validatePatientLoginAfterApproval(String patientLoginUrl,String tc_Name) throws InterruptedException, IOException {
 		driver.get(patientLoginUrl);
 		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(registrationMap.get("uname"));
 		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(registrationMap.get("pwd"));
 		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
+		helperObj.captureScreenshot(tc_Name);
 		String title= driver.findElement(By.xpath("//div[@class='panel-heading']/h3[@class='panel-title']")).getText();
 		return title;
 	}
-
-
-
-
 }
