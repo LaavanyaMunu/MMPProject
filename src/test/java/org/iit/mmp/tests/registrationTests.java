@@ -32,6 +32,7 @@ public class registrationTests extends testBase{
 		System.out.println("The registration successful message is "+ actual);	
 		
 		}
+	
 	@Parameters("patientLoginUrl")
 	@Test(priority =2) 
 	  public void validatePatientLoginAlertMessageBeforeApproval(String patientLoginUrl) throws InterruptedException {
