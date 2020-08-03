@@ -18,8 +18,7 @@ public class registrationPage {
 	WebDriver driver;
 	helperClass helperObj ;
 	int noOfChars = 4;
-	//adding and removing comment from command line
-	//license should contains 8 nos	
+	
 	By FirstName = By.xpath("//input[@id='firstname']");
 	By LastName = By.id("lastname");
 	By DOB = By.id("datepicker");
