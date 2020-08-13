@@ -3,12 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="org.iit.mmp.tests.registrationTests">
+      <class name="org.iit.mmp.adminmodule.tests.RegisteredPatientApprovalTests">
         <methods>
+          <include name="validateAdminLoginAlertMessageAfterApproval"/>
           <include name="instantiateDriver"/>
-          <include name="validateRegistration"/>
+          <include name="teardown"/>
         </methods>
-      </class> <!-- org.iit.mmp.tests.registrationTests -->
+      </class> <!-- org.iit.mmp.adminmodule.tests.RegisteredPatientApprovalTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

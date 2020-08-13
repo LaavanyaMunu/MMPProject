@@ -1,12 +1,9 @@
 package org.iit.mmp.util;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
-
-public class appLibrary {
-
+public class AppLibrary {
 	public static String getDate(int days) {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, days);

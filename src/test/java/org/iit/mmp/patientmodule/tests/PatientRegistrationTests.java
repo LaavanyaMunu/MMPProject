@@ -1,4 +1,4 @@
-package org.iit.mmp.tests;
+package org.iit.mmp.patientmodule.tests;
 
 import org.testng.annotations.Test;
 import org.testng.Assert;
@@ -7,18 +7,17 @@ import org.testng.annotations.Parameters;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import org.iit.mmp.helper.helperClass;
-import org.iit.mmp.patientModulePages.registrationPage;
-import org.iit.mmp.util.testBase;
-
-public class registrationTests extends testBase {
-	helperClass hObj;
-	registrationPage rp;
+import org.iit.mmp.helper.HelperClass;
+import org.iit.mmp.patientModulePages.PateintRegistrationPage;
+import org.iit.mmp.util.TestBase;
+public class PatientRegistrationTests extends TestBase {
+	HelperClass hObj;
+	PateintRegistrationPage rp;
 	@Parameters("url")
-	@Test(priority = 1,description="tc_001 Validation of Registration Functionality",groups={"US_001","regression","sanity"})
+	@Test(priority = 1,description="TC_001 Validation of Registration Functionality",groups=("PatientRegistrationTests"))
 	public void validateRegistration(String url) throws InterruptedException {
-		hObj = new helperClass(driver);
-		rp = new registrationPage(driver);
+		hObj = new HelperClass(driver);
+		rp = new PateintRegistrationPage(driver);
 		hObj.launchHomePage(url);
 		hObj.clickOnRegisterLink();
 		HashMap<String, String> hmap = rp.fillregisterPatientForm();
@@ -33,23 +32,16 @@ public class registrationTests extends testBase {
 		System.out.println("The registration successful message is " + actual);
 	}
 	@Parameters("patientLoginUrl")
-	@Test(priority = 2,description="tc_002 Validation of PatientLogin Functionality",groups={"US_002","regression","sanity"})
+	@Test(priority = 2,description="TC_002 Validation of PatientLogin Functionality",groups=("PatientRegistrationTests"))
 	public void validatePatientLoginAlertMessageBeforeApproval(String patientLoginUrl) throws InterruptedException {
 		String expected = "Admin Approval is pending.";
 		String actual = rp.patientLoginAlertMessageBeforeApproval(patientLoginUrl);
 		Assert.assertEquals(actual.trim(), expected, actual);
 		System.out.println("The alert message when patient logs in before admin approves is  " + actual);
 	}
-	@Parameters({ "url", "uName", "pWord" })
-	@Test(priority = 3,description="tc_003 Validation of AdminLogin Functionality",groups={"US_003","regression","sanity"})
-	public void validateAdminLoginAlertMessageAfterApproval(String url, String uName, String pWord) throws Exception {
-		String expected = "USER has been updated.";
-		String actual = rp.adminApprovalAlertMessage(url, uName, pWord);
-		Assert.assertEquals(actual.trim(), expected, actual);
-		System.out.println("The alert message when admin logs in to approves is  " + actual);
-	}
+	
 	@Parameters({"patientLoginUrl","tc_Name"})
-	@Test(priority = 4,description="tc_004 Validation of PatientLogin Functionality",groups={"US_002","regression","sanity"})
+	@Test(priority = 3,dependsOnGroups = {"AdminTests"},description="TC_003 Validation of PatientLogin Functionality",groups=("PatientRegistration"))
 	public void validatePatientLoginAlertMessageAfterApproval(String patientLoginUrl, String tc_Name) throws InterruptedException, IOException {
 		String actual = "Patient Portal";
 		String expected = rp.validatePatientLoginAfterApproval(patientLoginUrl,tc_Name);

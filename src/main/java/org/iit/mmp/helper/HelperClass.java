@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import org.apache.commons.io.FileUtils;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -12,10 +13,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class helperClass {
+public class HelperClass{
 	WebDriver driver;
-
-	public helperClass(WebDriver driver) {
+	public HelperClass(WebDriver driver) {
 		this.driver = driver;
 	}
 	public WebDriver switchToAFrameAvailable(String frame, int timeInSecs) {
@@ -26,8 +26,8 @@ public class helperClass {
 	public void launchHomePage(String url) {
 		driver.get(url);
 	}
-	public void launchAdminLoginPage(String url, String uName, String pWord) throws InterruptedException {
-		driver.get(url);
+	public void launchAdminLoginPage(String uName, String pWord) throws InterruptedException {
+		//driver.get(homePageUrl);
 		driver.findElement(By.xpath("//div[@id='welcome']//following-sibling::a[contains(text(),'Login') ]")).click();
 		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(uName);
 		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(pWord);
@@ -49,7 +49,8 @@ public class helperClass {
 	public void clickOnRegisterLink() {
 		driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
 	}
-	public void patientLogin(String uName, String pWord) {
+	public void patientLogin(String url,String uName, String pWord) {
+		driver.get(url);
 		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(uName);
 		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(pWord);
 		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
@@ -60,4 +61,5 @@ public class helperClass {
 		  alt.accept(); 
 		  return AlertMessage;
 	}
+		
 }

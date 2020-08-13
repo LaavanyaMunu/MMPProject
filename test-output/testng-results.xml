@@ -1,39 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+<testng-results skipped="0" failed="0" ignored="1" total="5" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="59561" started-at="2020-08-03T15:20:36 CDT" finished-at="2020-08-03T15:21:36 CDT">
+  <suite name="Suite" duration-ms="57222" started-at="2020-08-11T02:22:13 CDT" finished-at="2020-08-11T02:23:10 CDT">
     <groups>
-      <group name="regression">
-        <method signature="registrationTests.validateAdminLoginAlertMessageAfterApproval(java.lang.String, java.lang.String, java.lang.String)[pri:3, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validateAdminLoginAlertMessageAfterApproval" class="org.iit.mmp.tests.registrationTests"/>
-        <method signature="registrationTests.validatePatientLoginAlertMessageAfterApproval(java.lang.String, java.lang.String)[pri:4, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validatePatientLoginAlertMessageAfterApproval" class="org.iit.mmp.tests.registrationTests"/>
-        <method signature="registrationTests.validatePatientLoginAlertMessageBeforeApproval(java.lang.String)[pri:2, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validatePatientLoginAlertMessageBeforeApproval" class="org.iit.mmp.tests.registrationTests"/>
-        <method signature="registrationTests.validateRegistration(java.lang.String)[pri:1, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validateRegistration" class="org.iit.mmp.tests.registrationTests"/>
-      </group> <!-- regression -->
-      <group name="US_002">
-        <method signature="registrationTests.validatePatientLoginAlertMessageAfterApproval(java.lang.String, java.lang.String)[pri:4, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validatePatientLoginAlertMessageAfterApproval" class="org.iit.mmp.tests.registrationTests"/>
-        <method signature="registrationTests.validatePatientLoginAlertMessageBeforeApproval(java.lang.String)[pri:2, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validatePatientLoginAlertMessageBeforeApproval" class="org.iit.mmp.tests.registrationTests"/>
-      </group> <!-- US_002 -->
-      <group name="US_001">
-        <method signature="registrationTests.validateRegistration(java.lang.String)[pri:1, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validateRegistration" class="org.iit.mmp.tests.registrationTests"/>
-      </group> <!-- US_001 -->
-      <group name="sanity">
-        <method signature="registrationTests.validateAdminLoginAlertMessageAfterApproval(java.lang.String, java.lang.String, java.lang.String)[pri:3, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validateAdminLoginAlertMessageAfterApproval" class="org.iit.mmp.tests.registrationTests"/>
-        <method signature="registrationTests.validatePatientLoginAlertMessageAfterApproval(java.lang.String, java.lang.String)[pri:4, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validatePatientLoginAlertMessageAfterApproval" class="org.iit.mmp.tests.registrationTests"/>
-        <method signature="registrationTests.validatePatientLoginAlertMessageBeforeApproval(java.lang.String)[pri:2, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validatePatientLoginAlertMessageBeforeApproval" class="org.iit.mmp.tests.registrationTests"/>
-        <method signature="registrationTests.validateRegistration(java.lang.String)[pri:1, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validateRegistration" class="org.iit.mmp.tests.registrationTests"/>
-      </group> <!-- sanity -->
-      <group name="US_003">
-        <method signature="registrationTests.validateAdminLoginAlertMessageAfterApproval(java.lang.String, java.lang.String, java.lang.String)[pri:3, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validateAdminLoginAlertMessageAfterApproval" class="org.iit.mmp.tests.registrationTests"/>
-      </group> <!-- US_003 -->
+      <group name="AdminTests">
+        <method signature="RegisteredPatientApprovalTests.validateAdminLoginAlertMessageAfterApproval(java.lang.String, java.lang.String, java.lang.String)[pri:3, instance:org.iit.mmp.adminmodule.tests.RegisteredPatientApprovalTests@6973bf95]" name="validateAdminLoginAlertMessageAfterApproval" class="org.iit.mmp.adminmodule.tests.RegisteredPatientApprovalTests"/>
+      </group> <!-- AdminTests -->
+      <group name="PatientRegistration">
+        <method signature="PatientRegistrationTests.validatePatientLoginAlertMessageAfterApproval(java.lang.String, java.lang.String)[pri:3, instance:org.iit.mmp.patientmodule.tests.PatientRegistrationTests@6ce139a4]" name="validatePatientLoginAlertMessageAfterApproval" class="org.iit.mmp.patientmodule.tests.PatientRegistrationTests"/>
+      </group> <!-- PatientRegistration -->
+      <group name="PatientRegistrationTests">
+        <method signature="PatientRegistrationTests.validatePatientLoginAlertMessageBeforeApproval(java.lang.String)[pri:2, instance:org.iit.mmp.patientmodule.tests.PatientRegistrationTests@6ce139a4]" name="validatePatientLoginAlertMessageBeforeApproval" class="org.iit.mmp.patientmodule.tests.PatientRegistrationTests"/>
+        <method signature="PatientRegistrationTests.validateRegistration(java.lang.String)[pri:1, instance:org.iit.mmp.patientmodule.tests.PatientRegistrationTests@6ce139a4]" name="validateRegistration" class="org.iit.mmp.patientmodule.tests.PatientRegistrationTests"/>
+      </group> <!-- PatientRegistrationTests -->
     </groups>
-    <test name="registrationTests" duration-ms="59561" started-at="2020-08-03T15:20:36 CDT" finished-at="2020-08-03T15:21:36 CDT">
-      <class name="org.iit.mmp.tests.registrationTests">
-        <test-method status="PASS" signature="instantiateDriver()[pri:0, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="instantiateDriver" is-config="true" duration-ms="7284" started-at="2020-08-03T15:20:36 CDT" finished-at="2020-08-03T15:20:44 CDT">
+    <test name="PatientRegistrationTests" duration-ms="57222" started-at="2020-08-11T02:22:13 CDT" finished-at="2020-08-11T02:23:10 CDT">
+      <class name="org.iit.mmp.patientmodule.tests.PatientRegistrationTests">
+        <test-method status="PASS" signature="instantiateDriver()[pri:0, instance:org.iit.mmp.patientmodule.tests.PatientRegistrationTests@6ce139a4]" name="instantiateDriver" is-config="true" duration-ms="6577" started-at="2020-08-11T02:22:07 CDT" finished-at="2020-08-11T02:22:13 CDT">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- instantiateDriver -->
-        <test-method status="PASS" signature="validateRegistration(java.lang.String)[pri:1, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validateRegistration" duration-ms="18465" started-at="2020-08-03T15:20:44 CDT" description="tc_001 Validation of Registration Functionality" finished-at="2020-08-03T15:21:02 CDT">
+        <test-method status="PASS" signature="validateRegistration(java.lang.String)[pri:1, instance:org.iit.mmp.patientmodule.tests.PatientRegistrationTests@6ce139a4]" name="validateRegistration" duration-ms="18931" started-at="2020-08-11T02:22:13 CDT" description="TC_001 Validation of Registration Functionality" finished-at="2020-08-11T02:22:32 CDT">
           <params>
             <param index="0">
               <value>
@@ -44,7 +32,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validateRegistration -->
-        <test-method status="PASS" signature="validatePatientLoginAlertMessageBeforeApproval(java.lang.String)[pri:2, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validatePatientLoginAlertMessageBeforeApproval" duration-ms="9561" started-at="2020-08-03T15:21:02 CDT" description="tc_002 Validation of PatientLogin Functionality" finished-at="2020-08-03T15:21:12 CDT">
+        <test-method status="PASS" signature="validatePatientLoginAlertMessageBeforeApproval(java.lang.String)[pri:2, instance:org.iit.mmp.patientmodule.tests.PatientRegistrationTests@6ce139a4]" name="validatePatientLoginAlertMessageBeforeApproval" duration-ms="9969" started-at="2020-08-11T02:22:32 CDT" description="TC_002 Validation of PatientLogin Functionality" finished-at="2020-08-11T02:22:42 CDT">
           <params>
             <param index="0">
               <value>
@@ -55,7 +43,25 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validatePatientLoginAlertMessageBeforeApproval -->
-        <test-method status="PASS" signature="validateAdminLoginAlertMessageAfterApproval(java.lang.String, java.lang.String, java.lang.String)[pri:3, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validateAdminLoginAlertMessageAfterApproval" duration-ms="13507" started-at="2020-08-03T15:21:12 CDT" description="tc_003 Validation of AdminLogin Functionality" finished-at="2020-08-03T15:21:25 CDT">
+        <test-method status="PASS" signature="validatePatientLoginAlertMessageAfterApproval(java.lang.String, java.lang.String)[pri:3, instance:org.iit.mmp.patientmodule.tests.PatientRegistrationTests@6ce139a4]" name="validatePatientLoginAlertMessageAfterApproval" duration-ms="9162" depends-on-groups="AdminTests, AdminTests" started-at="2020-08-11T02:23:01 CDT" description="TC_003 Validation of PatientLogin Functionality" finished-at="2020-08-11T02:23:10 CDT">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[TC_003]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validatePatientLoginAlertMessageAfterApproval -->
+      </class> <!-- org.iit.mmp.patientmodule.tests.PatientRegistrationTests -->
+      <class name="org.iit.mmp.adminmodule.tests.RegisteredPatientApprovalTests">
+        <test-method status="PASS" signature="validateAdminLoginAlertMessageAfterApproval(java.lang.String, java.lang.String, java.lang.String)[pri:3, instance:org.iit.mmp.adminmodule.tests.RegisteredPatientApprovalTests@6973bf95]" name="validateAdminLoginAlertMessageAfterApproval" duration-ms="18963" started-at="2020-08-11T02:22:42 CDT" description="ATC_001 Validation of AdminLogin Functionality" finished-at="2020-08-11T02:23:01 CDT">
           <params>
             <param index="0">
               <value>
@@ -76,27 +82,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- validateAdminLoginAlertMessageAfterApproval -->
-        <test-method status="PASS" signature="validatePatientLoginAlertMessageAfterApproval(java.lang.String, java.lang.String)[pri:4, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="validatePatientLoginAlertMessageAfterApproval" duration-ms="9785" started-at="2020-08-03T15:21:25 CDT" description="tc_004 Validation of PatientLogin Functionality" finished-at="2020-08-03T15:21:35 CDT">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[http://96.84.175.78/MMP-Release2-Integrated-Build.6.8.000/portal/login.php]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[tc_003]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- validatePatientLoginAlertMessageAfterApproval -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:org.iit.mmp.tests.registrationTests@614ddd49]" name="teardown" is-config="true" duration-ms="861" started-at="2020-08-03T15:21:35 CDT" finished-at="2020-08-03T15:21:36 CDT">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- teardown -->
-      </class> <!-- org.iit.mmp.tests.registrationTests -->
-    </test> <!-- registrationTests -->
+      </class> <!-- org.iit.mmp.adminmodule.tests.RegisteredPatientApprovalTests -->
+    </test> <!-- PatientRegistrationTests -->
   </suite> <!-- Suite -->
 </testng-results>

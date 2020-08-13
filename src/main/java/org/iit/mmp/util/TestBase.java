@@ -5,15 +5,18 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeSuite;
+//import org.testng.annotations.BeforeClass;
+//import org.testng.annotations.BeforeTest;
+//import org.testng.annotations.BeforeTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class testBase {
+public class TestBase {
 	
 protected WebDriver driver;
 	
-	@BeforeTest
+	@BeforeSuite(alwaysRun = true)
 	public void instantiateDriver()
 	{
 		WebDriverManager.chromedriver().setup();

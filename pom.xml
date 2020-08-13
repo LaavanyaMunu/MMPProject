@@ -4,12 +4,7 @@
   <artifactId>manageMyPatient</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
-  <dependency>
-  <groupId>org.testng</groupId>
-  <artifactId>testng</artifactId>
-  <version>7.0.0</version>
-  <scope>test</scope>
-</dependency>
+  
 
 <dependency>
     <groupId>io.github.bonigarcia</groupId>
@@ -22,14 +17,6 @@
     <artifactId>selenium-java</artifactId>
     <version>3.141.59</version>
 </dependency>
- 
-
-<dependency>
-    <groupId>com.google.inject</groupId>
-    <artifactId>guice</artifactId>
-    <version>4.2.2</version>
-</dependency>
-
  
   </dependencies>
 </project>
