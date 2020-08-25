@@ -1,10 +1,8 @@
 package org.iit.mmp.helper;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import org.apache.commons.io.FileUtils;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -12,8 +10,12 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-public class HelperClass{
+public class HelperClass {
+	By logIn = By.xpath("//div[@id='welcome']//following-sibling::a[contains(text(),'Login')]");
+	By pwd = By.id("password");
+	By userName = By.id("username");
+	By signIn = By.xpath("//input[@value = 'Sign In']");
+	By registerBtn = By.xpath("//a[contains(text(),'Register')]");
 	WebDriver driver;
 	public HelperClass(WebDriver driver) {
 		this.driver = driver;
@@ -27,11 +29,10 @@ public class HelperClass{
 		driver.get(url);
 	}
 	public void launchAdminLoginPage(String uName, String pWord) throws InterruptedException {
-		//driver.get(homePageUrl);
-		driver.findElement(By.xpath("//div[@id='welcome']//following-sibling::a[contains(text(),'Login') ]")).click();
-		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(uName);
-		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(pWord);
-		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
+		driver.findElement(logIn).click();
+		driver.findElement(userName).sendKeys(uName);
+		driver.findElement(pwd).sendKeys(pWord);
+		driver.findElement(signIn).click(); 
 	}
 	public void navigateToAModule(String moduleName) {
 		driver.findElement(By.xpath("//span[contains(text(),'" + moduleName + "')]")).click();
@@ -47,19 +48,19 @@ public class HelperClass{
 		FileUtils.copyFile(srcFile, destFile);
 	}
 	public void clickOnRegisterLink() {
-		driver.findElement(By.xpath("//a[contains(text(),'Register')]")).click();
+		driver.findElement(registerBtn).click();
 	}
 	public void patientLogin(String url,String uName, String pWord) {
 		driver.get(url);
-		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(uName);
-		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(pWord);
-		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
+		driver.findElement(userName).sendKeys(uName);
+		driver.findElement(pwd).sendKeys(pWord);
+		driver.findElement(signIn).click();
 	}
-		public String alertMessage() {
+	public String alertMessage() {
 		Alert alt = driver.switchTo().alert(); 
-		  String AlertMessage = alt.getText(); 
-		  alt.accept(); 
-		  return AlertMessage;
+		String AlertMessage = alt.getText(); 
+		alt.accept(); 
+		return AlertMessage;
 	}
-		
+
 }

@@ -4,13 +4,11 @@ import java.util.HashMap;
 import java.util.Random;
 import org.iit.mmp.helper.HelperClass;
 import org.iit.mmp.util.AppLibrary;
-import org.iit.mmp.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
-public class PateintRegistrationPage extends TestBase {
-	
+public class PateintRegistrationPage{
+	WebDriver driver;
 	HelperClass helperObj ;
 	int noOfChars = 4;
 	By FirstName = By.xpath("//input[@id='firstname']");
@@ -29,12 +27,14 @@ public class PateintRegistrationPage extends TestBase {
 	By pharAddress = By.id("pharma_adress");
 	By email = By.id("email");
 	By pwd = By.id("password");
-	By uname = By.id("username");
-	By confirmpwd = By.id("confirmpassword");
+	By uName = By.id("username");
+	By confirmPwd = By.id("confirmpassword");
 	By security = By.id("security");
 	By ans = By.id("answer");
+	By saveBtn = By.xpath("//input[@value = 'Save']");
+	By signIn = By.xpath("//input[@value = 'Sign In']");
+	By panelTitle =By.xpath("//div[@class='panel-heading']/h3[@class='panel-title']");
 	HashMap<String,String> registrationMap = new HashMap<String,String>();
-	
 	public PateintRegistrationPage(WebDriver driver){
 		this.driver = driver;
 		helperObj = new HelperClass(driver);
@@ -123,16 +123,15 @@ public class PateintRegistrationPage extends TestBase {
 	public void enterPassword() {
 		String pwdValue = AppLibrary.getAlphaNumericString(8)+"2";
 		driver.findElement(pwd).sendKeys(pwdValue);
-		driver.findElement(confirmpwd).sendKeys(pwdValue);
+		driver.findElement(confirmPwd).sendKeys(pwdValue);
 		registrationMap.put("pwd", pwdValue);
 		registrationMap.put("confirmpwd", pwdValue);
 	}
 	public void enterUserName() {
 		String uNameValue = "ATUname"+AppLibrary.getRandomChars(noOfChars);
-		driver.findElement(uname).sendKeys(uNameValue);
+		driver.findElement(uName).sendKeys(uNameValue);
 		registrationMap.put("uname", uNameValue);
 	}
-
 	public void enterSecurityQues() {
 		Select sel = new Select(driver.findElement(security));
 		sel.selectByIndex(AppLibrary.getRandomIndexInRange(3,1));
@@ -146,7 +145,7 @@ public class PateintRegistrationPage extends TestBase {
 	}
 	public void clickOnSave() throws InterruptedException {
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@value = 'Save']")).click();
+		driver.findElement(saveBtn).click();
 	}
 	public HashMap<String, String> fillregisterPatientForm() throws InterruptedException {
 		enterFirstName();
@@ -173,30 +172,27 @@ public class PateintRegistrationPage extends TestBase {
 		clickOnSave();
 		return registrationMap;
 	}
-	
 	public String registrationCompleteAlertMessage() throws InterruptedException {
-		Thread.sleep(5000);
-		  String regCompleteAlert= helperObj.alertMessage();
-		  return regCompleteAlert;
+		String regCompleteAlert= helperObj.alertMessage();
+		return regCompleteAlert;
 	}
 	public String patientLoginAlertMessageBeforeApproval(String patientLoginUrl) throws InterruptedException {
 		driver.get(patientLoginUrl);
-		//helperObj.patientLogin(uName, pWord);
-		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(registrationMap.get("uname"));
-		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(registrationMap.get("pwd"));
-		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
-		Thread.sleep(5000);
+		driver.findElement(uName).sendKeys(registrationMap.get("uname"));
+		driver.findElement(pwd).sendKeys(registrationMap.get("pwd"));
+		driver.findElement(signIn).click();
+		//Thread.sleep(5000);
 		String loginalertMessage = helperObj.alertMessage();
 		return loginalertMessage;
 	}
-    public String validatePatientLoginAfterApproval(String patientLoginUrl,String tc_Name) throws InterruptedException, IOException {
+	public String validatePatientLoginAfterApproval(String patientLoginUrl,String tc_Name) throws InterruptedException, IOException {
 		driver.get(patientLoginUrl);
-		driver.findElement(By.xpath("//input[@id = 'username']")).sendKeys(registrationMap.get("uname"));
-		driver.findElement(By.xpath("//input[@id = 'password']")).sendKeys(registrationMap.get("pwd"));
-		driver.findElement(By.xpath("//input[@value = 'Sign In']")).click();
+		driver.findElement(uName).sendKeys(registrationMap.get("uname"));
+		driver.findElement(pwd).sendKeys(registrationMap.get("pwd"));
+		driver.findElement(signIn).click();
 		Thread.sleep(2000);
 		helperObj.captureScreenshot(tc_Name);
-		String title= driver.findElement(By.xpath("//div[@class='panel-heading']/h3[@class='panel-title']")).getText();
+		String title= driver.findElement(panelTitle).getText();
 		return title;
 	}
 }
