@@ -1,14 +1,10 @@
 package org.iit.mmp.AdminModulePages;
-
 import java.util.List;
-
 import org.iit.mmp.helper.HelperClass;
-//import org.iit.mmp.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 public class AdminModuleRegisteredPatientApprovalPage {
 	WebDriver driver;
 	HelperClass helperObj;
